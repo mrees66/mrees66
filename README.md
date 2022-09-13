@@ -19,4 +19,4 @@ The processor has a special unit called an arithmetic logic unit, which does cal
 
  
  
-[Jounral entry 3](https://www.github.com)
+[JounralMRees](https://www.github.com)
