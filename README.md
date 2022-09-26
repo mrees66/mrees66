@@ -1,4 +1,4 @@
-# jounral entry 4
+# jounral entry 5
 ## subheading
 
 
@@ -161,3 +161,4 @@ I’ve had trouble with my computer slowing due to excessive amounts of tabs tha
  
  
 [mrees66/tech-journal-MRees](https://www.github.com)
+![Screenshot (98)](https://user-images.githubusercontent.com/112408713/192362912-6e829112-2730-4f44-8455-e027124fdd25.png)
