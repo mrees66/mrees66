@@ -1,162 +1,172 @@
 # jounral entry 5
 ## subheading
+Contiguous Allocation:
 
 
-Memory Management: 
+Its fixed size of a file in which the file cannot go beyond. 
 
-Memory partitioning usually means dividing into sections like Poland during the 18th century. This partitioning allows for multiprogramming and multitasking by operating systems.   OS can also implement either fixed or variable partitions.  Fixed partitions is when the physical memory is split into partitions to which the process may be assigned. Variable partitioning is a solution to the fixed fragmentation problem found in fixed partitions by allowing for the partition size to be changed after creation. 
 
-Virtual memory is a technique that gives the application program the impression that it has contiguous working memory. But in reality the application many be physically fragmented and could possibly overflow  the disk storage. This makes the programming of large applications easier and allows us to use RAM more efficiently.   
+Linked List Allocation:
 
-IN paging the physical memory is divided into equal sizes frames while the program is divided into equal size pages.  The frames are also designed to be the same size allowing for easy integration.  WHen a program is executed its pages loaded onto available memory and the page table is translated from users pages to memory frames.  IF the program needs more memory then what is available the only part of the memory only a part of it loaded.  IF the program evers tries to access pages that are not currently mapped onto RAM a page fault occurs.  THe solution to the problem is that the OS takes control and handles the problem in a manner invisible to the program. 
+For Linked list allocation  each file block is on a disk that is associated with a pointer to the next block.
+The most notable example is the MS DOS file system, which uses the file attribute table (FAT) to implement linked list files.
+
+When a file header points to the table entry of the first file block, and the content of the file block contains the entry number of the next block.  A special marker is then used to indicate the end of that particular  file.
+
+One of  the  advantages of the linked list  approach is that the files can grow  dynamically with incremental allocation of blocks.  However, sequential accesses may suffer since blocks might not be contiguous. Random accesses are horrible and  can  involve multiple sequential
+Searches which will suck time and energy better spent elsewhere.  Lastly, linked list allocation can be unreliable, since missing a single pointer can lead to loss of the remaining file. 
+
+Segment Based Allocation
+Segment based allocation uses a segment table to allocate to  multiple regions of contiguous blocks. Segment based allocation provides the flexibility required to  separate into a number of contiguous disk  regions,  while  also  permitting  contiguous  allocation  to  reduce  disk  seek
+time.    However,  as  the  disk  becomes  increasingly  fragmented,   it will need a bigger and bigger table to locate piecewise contiguous blocks.    In an extreme  case,  segment based  allocation  can  potentially  need  one  table  entry per disk block.  In addition
+, under this scheme, random accesses are not as fast as the contiguous allocation. Because   the file system needs to locate the pair of  begin  and  end blocks that contain the target byte before making the disk accesses.
+
+
+Indexed Allocation
+Indexed  allocation allows the use of  an index to track the file block locations.  A  user  declares the maximum file size, and the file system allocates a file header with an array of pointers big enough to point to all file blocks.
+
+
+Although indexed allocation provides fast disk location lookups for random accesses  the file
+
+blocks  might  be  scattered  all  over  the  disk making it potentially difficult to find.    A  file  system  needs  to  provide  additional mechanisms to ensure that disk blocks are grouped together for good and speedy performance.  Also,  as  the  file  increases  in  size, its system  needs  to reallocate the index array and copy old entries. So the index can ideally grow incrementally.
+
+
+Multilevel Indexed Allocation:
+Linux uses multilevel indexed allocation, so certain index entries point to the index blocks as opposed  to  data  blocks.    The  file  header,  or  the i node data  structure   holds  around 15  index pointers. The  first 12  pointers  point  to the  data  blocks.  The 13th pointer  points  to  one single indirect block , which contains 1,024 additional pointers pointing to data blocks.  The 14th pointer in  the  file  header  points  to  a double  indirect  block,  which  contains  1,024  pointers  to a bunch of single indirect blocks.  The 15th pointer points to a triple indirect block, which contains 1,024 pointers to the double indirect blocks.  
+
+
+ This skewed multilevel index tree is tailored  for both small and large files.  Small files can be accessed through the first 12 pointers, while large files can grow with incremental allocations of  the index blocks.  However accessing the  data block under the triple indirect block involves multiple disk accesses: one disk access for the triple indirect block. 
+ Another for the  double indirect block, and yet another for the single indirect block before accessing the actual data block. 
+
+ Also, the number of pointers provided by this data structures limited  the largest file size.  Lastly, the boundaries between the last four pointers are somewhat arbitrary.  With the given block number, it is not immediately obvious as to which of the 15 pointers to follow.
+
+
+
+
+Inverted Allocation
+
+If  we  use  a  disk  as  a  device  for  backups   the  storage  capacity  will  be  the primary concern, and the speed of the disk may not matter but it must be faster than the tape. 
+Since backup storage keeps track of all modifications, a small modification to a large file
+results  in the storage of  the  entire modified  file. Inverted  allocation allocates  the disk  block  by hashing the file block content to the disk block location.  By doing so the different file blocks 
+of the same content  can  share the same disk block for storage purposes.  For
+example, if one block is modified in the  N block file, then the storage requirement for both files
+is N + 1 blocks. 
+
+
+
+
+
+Disk Structure:
+
+Disks  provide  the  bulk  of  secondary  storage.  They
+come  in  multi platter  disk  packs  and have all the following characteristics:
+
+•
+Each platter is divided into several  different tracks.
+
+•
+Each track has several different sectors.
 .
-Memory Management requirements:
 
-Relocation is when programs that are not loaded into a fixed point in memory  reside in various areas.
+•
+Each platter has two different surfaces.
+.
+A Cylinder is  the  set  of  tracks which  are  at  the  same  track  position  on  all  disk
 
-Protection means that each process should be protected against unwanted interference by   other
-processes either accidentally or intentionally. And all memory references that are generated by a process must be checked at a specific time  to ensure that they only reference memory
- that has been assigned  to that process. 
+surfaces.
 
-Sharing is when the Protection mechanisms are flexible enough to allow a number of
-processes to access the same area of memory.
+•
+The  number  of  sector, bytes, tracks,platter and track  vary  among  disk types.
 
-Contiguous Organization is when programs are organized into sequential modules. However some of the 
-Modules are non modifiable while others are. 
+•
+To  access  a  sector,  one  must  know  the  following components drive number,  track/cylinder,  surface  and
 
-A Non-Contiguous Organization is when the computer is organized into various locations based   on need and Available space.
+sector.
 
-Memory segmentation
-Memory segmentation is one of the ways to achieve memory protection.  In practice when a systems uses segmentation an instruction operand it refers to a memory location in which a 
-value that identifies a segment and includes an offset within a segment. The segment has a set of permissions and a length associated with it.  If the process is allowed to make a type of reference to its memory and the offset of the segment is specified by the length, the reference is permitted,otherwise an hardware exception is raised.  The most common segments are Code,data and stack which was created to execute the programs on 80186 and some Microprocessors.  This isolates the programs and increases and increases the security of the memory. 
+•
+A sector is the smallest data section that can be read and written on a block device.
 
 
 
-The Concept of Processor:
+Free sequence list
 
+Usually free disk blocks are in contiguous chunks. Thus we need only keep a 
+pointer to the  first  free  block  of  each  sequence  and  record  the  number  of  blocks  in  the  sequence.
 
-The concept has many different definitions but the one that is relative to the notes is the processor is an executing program.  The difference between a processor and a program is that  the program is a group of instructions while the processor is an activity. 
+This  can  be  used  for  any  allocation  method  (but  is  particularly  efficient  for  contiguous
 
-Process Management:   
+allocation), and it is easily stored. However, it does lead to disk fragmentation.
 
-The OS works like the computer system’s software that assists the hardware in performing process management functions. The OS keeps track of all the activate processes and allocates system resources in accordance to the policies that were devised to meet performance objectives.  In order to meet its requirements the OS must maintain many data structures as efficiently as possible.  A Processor also needs certain resources like CPU Time,memory, files and I/O devices to accomplish its tasks.  These resources are assigned to a Processor as it is created.  A single processor may also be shared amongst several processes with some scheduling algorithms that prioritize specific work within the system. 
 
-OS are required to provide some way to create all processes needed to function.  In some systems it might be possible to have all these processes created, however in most systems processors there is a way needed to create and destroy processes during operations. 
+DISK SPACE ALLOCATION METHODS
 
-In the OS the process management functions include Process creation,termination
-of the process,Controlling the progress of the process,Process Scheduling ,Dispatching
-,Interrupt handling / Exceptional handling,Switching between the processes
-,Process synchronization,Interprocess communication support and Management of Process Control Blocks.
 
-Process states:
+Contiguous Allocation
 
+Each file is allocated to contiguous disk blocks. For each file, the device directory contains
 
-During the lifespan of a process, its execution status may be in one of five states:  
-Executing means the process that is currently running and controlling a CPU.  Waiting means that the process  can run but only when the CPU is available. Blocked means that the process is currently waiting on I/O, either for input to arrive or output to be sent. SUspended means that the process is currently able to run but for some reason it's not in the process queue.  And finally Ready means that the process is in the memory and will be executed given CPU time.
+the location of the  starting block and the number of blocks within the file.
 
-Implementation of Processes
 
+Access  is pretty easy.  Sequential  and  direct  access  is  possible. This  allocation method  also reduces  head  movement  during  file  access with most of the  blocks on  the  same cylinder.
 
-In the implementation of the process model the OS maintains a table and an array of structures called the process table or process control block or switch frame.  Each entry identifies a process with information such as process state, its program counter,stack pointer, memory allocation and more.   
 
- The information storied in USB:
+Finding  space  for  a  new  file can be awkward and stressful.  The  free  space  list  must  be  searched  for  a  big enough chunk of contiguous space to find space for the file.
+When a   disk  is  made  up  of  allocated  and  free  sequences  of  blocks the  sequences  are  called holes.
 
-Process state, which might be new, ready, running, waiting or halted.
-Process number, each process is identified by it’s process number, called a process ID.
-Program counter, which indicates that the  address of the next instruction to be executed for this process. 
-PU registers, which may vary in number and type, (depending on the concrete microprocessor architecture)
- Memory management information, which include base and bounds registers or page table.
-I/O status information, composed I/O requests, I/O devices allocated to this process,
-a list of open files and so on.
- 
 
+First Fit means the  Allocation of the  first hole that fits the file.
 
- 
-Processor scheduling information, which includes process priority, pointers to scheduling
-queues and any other scheduling parameters within reason. 
+Best Fit means the Allocation of the smallest hole that fits the file.
 
- Threads:
-Threads are independently scheduled parts of a single program. A task is only multithreaded if it  was  composed of several independent sub processes, which can work on the common data, and if each of those pieces could run in parallel. Threads simply enable us to split up a program into separate logical  pieces, and have the pieces run independently of one another, until they need to communicate with each other. 
+Worst fit means the Allocation of the biggest hole available.
 
+ The  dynamic  allocation  problem  is  that  of  finding  the  most suitable hole for a file of size n blocks.  In this situation the 3 best algorithms are First fit,Best Fit and Worst fit. Which are prone  to external fragmentation. The Two possible solutions are  either compaction or abandon contiguous allocation.
 
+Contiguous allocation has other problems and constraints. The size of the file must be known. But it usually isn’t known until the problem presents itself. Thus as the file grows it may have to be moved  around the disk in order to  find  a file big enough  space for its new size.
 
-The sharing of resources can be made more effective if the manager knows exactly what each program is going to be done in advance. The scheduling algorithm can never know this but the programmer who wrote the program does know. 
+Trying to anticipate  growth  by  over allocating  space  will lead  to  internal  fragmentation as the  extra space may never be used.
 
-Threads allow a programmer to switch between whatever lightweight processes are best for the program. 
-A process that uses threads does not get more CPU time than an ordinary process. The CPU when used does
-Work on the threads. It is also  possible to write a more efficient program by making use of threads.  Inside a heavyweight process, threads are scheduled on a FCFS basis, unless the program decides to force certain threads to wait for the other threads. However 1 thread can work for 1 CPU so there might be some allocation issues. 
 
+Chained (Linked) Allocation:
 
-PROCESS SCHEDULING
 
-Scheduling is an important operating system function. All computer resources are
-scheduled before there used.  Since the  CPU is one of the primary computer resources, its scheduling is central to operating system design.  Scheduling refers to a set of policies and mechanisms supported by the operating system that controls the order in which task are completed. The main objective of scheduling is to increase CPU utilization and higher throughput.
-Throughput is the amount of work completed within a given Time interval. CPU scheduling is the basis of the operating system, which supports multiprogramming by having a number of programs in computer memory at the same time  share the CPU. This mechanism improves the overall efficiency of the computer system by allowing for more work to be done in less time. 
+The  above  problems  are  due  to  the  need  to  allocate  contiguous  space.
+Linked  allocation is designed to avoids  those  problems.  This  is achieved by allowing disk  space  to  be allocated randomly. A file’s space will be a linked list of blocks. Pointers are maintained to in the  first and last blocks.  Each  block  points  to  their successor.  So that each file and the device directory can contain the location of its starting blocks.
 
 
-Scheduling Objectives
+Access is quite problematic. Only sequential access is possible. The way to access a random block, the  access  must  begin  at  the  start  and  follow all the pointers.  Finding  space  for  files  is  usually pretty easy.  Blocks  are  usually chosen  from  the  free  space  list  and linked to the previous blocks. But there is no external fragmentation.
 
-The primary objective of scheduling is to improve system performance.   The secondary objectives of scheduling are as follows:
 
+Another  minor  problem  is  that the  space is used  up  by pointers. Or more accurately the  pointers scattered all over the disk which increases the possibility of losing a part of a file due to a corrupt pointer.  One partial  solution to this is to use  doubly  linked lists.  Another solution involves storing the file name  and relative  block  node in  each  block.  But this requires extra space overhead.
 
 
+Indexed Allocation: 
+Linked allocation can solve the external fragmentation and file growth problems of contiguous allocation. However, it also introduces some problems of its own. For example no direct access and scattered block pointers. But Indexed allocation does address both of these problems without the problems of contiguous allocation which is a plus. 
 
-Maximize throughput
+All  of  a  file’s  block  pointers  are  gathered  together  into  its index  block  which is an  array  of  pointers to blocks that are stored on the disk. The ith entry is supposed be  the pointer to the file’s ith block. 
 
-Scheduling should attempt to support and organize the largest possible number of processes per unit of time. Also Maximize the number of interactive users receiving passable  response times. 
+Access  is  pretty  easy.  Both  sequential  and  direct  access  possible.  There is no  external  fragmentation with the Allocation being relatively easy to manage. The Files also allocaticates extra blocks from the free space list as they grow in size.
+Disk Scheduling:
 
-Be predictable: No matter how pressure is put on system the given job should ultize the 
-Same amount of time.
+For a single disk there will be multiple I/O requests. If requests are selected randomly, the user will get the worst possible performance. As a consequence several algorithms exist to schedule the servicing of disk I/O requests.
+First Come First Serve (FCFS) is when the  I/O requests are served in the order in which they reach.
+Shortest Seek Time First  (SSTF) is  the process of selecting the request  with the minimum  seek time from the current head position.
+SCAN  Scheduling is when the disk  arm  starts  at  one  end  of  the  disk,  and  moves  toward  the other  end initiating servicing  requests  until  it  gets  to  the  other  end of the disk where  the  head movement is reversed and servicing continues.
+Circular Scan  (C Scan) is when the  head  moves from one  end  of  the  disk  to  the  other servicing  requests  as  it  goes. But  when  it  reaches  the  other  end it immediately returns to the beginning of the disk, without servicing any requests on the return trip.
+Circular Look  (C- Look) Arm only goes  as  far as  the last  request  in each direction before reversing the direction immediately, without first going all the way to the end of the disk.
 
-Minimize overhead: Scheduling should limit the amount of wasted resources in overhead.
 
-Balance resource use: Scheduling should keep resources busy and allow process to use
-Under utilized resources. 
+Chapter notes please th
 
+Parallel ATA also known as Parallel Advanced Technology Attachment is the standard for connecting hard drives to computer systems. PATA is based on computer signal technology which is a method of conveying multiple binary bits simultaneously. 
 
-Achieve a balance between response and utilization:  In order to ensure well functioning
-services that have good response time and prioritize speed over resource utilization.
+Serial Advanced Technology  Attachment is a command and transport protocol that defines how data is transferred between the motherboard and hard drive. One of these hard drive drive types called a solid state drive is when the hard drive uses flash memory instead of the classic mechanical disk. SSD is also much faster and has higher storage capacity than its counterpart.  Another variation of SSD called  SSHD (Solid State Hybrid drive) uses a particular type of flash memory called NAND to hold  important data on a hard disk drive device.   RAID is a way of storing the same data in different places on multiple SSD or hard disk drives to protect the data from potential drives failures. 
 
-Enforce Priorities: Scheduling must prioritize essentially systems and processes over others.
 
+Explanation as to why the notes from the textbook are extremely limited/ crappy only pertains to information supposed to be provided by the o'riley textbook:
 
-
-
-Give preference: Prioritize important processes that hold key over others with the scheduling mechanism.
-
-Degrade gracefully under heavy loads: A Scheduling system should not collapse under 
-Heavy systems load. Instead steps should be steps to prevent the creation of new processes and ensure that if the systems comes under stress it should only see a moderate decline in quality. 
-
-Memory overview:
-??? (I honestly don’t understand what the paragraph was trying to say)
-
-
-Windows disk caching:
-Virtual memory is a method of using hard drive space as if it was RAM. The Virtual memory allows the operating system to run larger applications while overloading the load. The amount of Hard Drive space is dynamic so increase and decrease as needed. The Cache size will shrinks if its constantly switching data with RAM. 
-
- WIndows task manager:
-
-THe WIndows task manager is used to monitor memory usage. There does seem to be a noticeable control difference between windows 11 and 10 though. 
-
-FLash memory:
-It's a type of nonvolatile memory solid state memory that holds data why the computer is shut down.  THis memory type is used in mobile dievies and USB Drives to store data. After you connect the USB Drive a letter will be assigned window and file explorer can bee used to copy data in case the laptop becomes inoperable. 
-
-Planning the Memory Installation—Memory Features
-Parity means checking for data accuracy.  NOn parity means chips that do not use any error checking.  ECC: Is an alternative to parity by using a mathematical algorithm to identify data accuracy. 
-
-Unbuffered memory is the opposite of registered memory which is used by low to medium powered computers. IN contrast the Buffered memory that is used in high end computers.  
-
-Memory Modecules:
-Dram speed are determined by the chipset.
-
-
-Based on the number of applications you typically run and the amount of physical RAM on your system, do you think your personal computer should use a larger or smaller page file?
-I use an average of 3 applications on any given day. My laptop has at least 16GB of Rams so I don’t  think a larger page would be needed.
- 
- 
-Have you ever had issues with a program using excessive amounts of memory or disk space and slowing down your computer? If so, how did you identify and solve the problem?
-I’ve had trouble with my computer slowing due to excessive amounts of tabs that I had on my old computer so I tried to close them to increase its performance. 
-
+I currently am having issues with accessing different pages of the learning oreilly learning textbook. It is currently only letting me access one page and even though I selected another page it refuses to go to that particular page or any page minus the first one at all.  Further the only page I have access provides barely anything more than a couple of cliff notes. So I had to google most of the information to at least having something written in vain attempt to provide a good supplement and not just cheap out and do anything at all for the textbook notes. I would have if the technical issue never happened.  Sorry for any confusion or inconvenience and please take this into consideration when grading the assignment.  I am also currently writing this after a time in which the IT department on Monday september 26th is closed so I am unable to get help on this particular issue. In case you don’t believe me, The google docs file that I sumbittted along with the link contains an image of the issue to illustrate the problem I'm currently experiencing. 
 
  
  
