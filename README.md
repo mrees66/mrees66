@@ -1,174 +1,52 @@
-# jounral entry 5
-## subheading
-Contiguous Allocation:
+Every computer has there needs and requirements that components have to be tailored kind of like nations developing their weapons according to their needs. What the user does with the computer dictates the components and peripherals needed. Looking at the computer systems by purpose is a good place to help understand the design.   The following are general specs of each computer type. 
 
 
-Its fixed size of a file in which the file cannot go beyond. 
+Gaming PCs Gaming  the current platform in which the writer is typing on is a uniqure. Gamers frequently build their own systems, but some computer manufacturers do make gaming PCs. A gaming PC tends to have the following key components: Powerful multi-core processor, High-end video cards with maximum video RAM and the specialized GPU, High-definition sound card and speakers, High-end system cooling Large amount of RAM Large display or dual displays,Quality mouse Possible gaming console and possible Headphones with microphone and Possible 3D glasses. (Who uses 3d glasses to game that’s kind of ridiculous, what benefit would they give them?) 
 
 
-Linked List Allocation:
+Audio/Video Editing Workstations An audio/video editing workstation is used to create videos and sound designs. This type requires a lot of hard drive space and RAM. Here are the most configuration components for such a computer: Specialized video card with maximum video RAM and GPU,Specialized audio card and speakers,Very fast and large-capacity hard drives,Dual monitors Powerful multi-core processors, Large amount of system RAM Quality mouse Possible digital tablet or scanner.
 
-For Linked list allocation  each file block is on a disk that is associated with a pointer to the next block.
-The most notable example is the MS DOS file system, which uses the file attribute table (FAT) to implement linked list files.
 
-When a file header points to the table entry of the first file block, and the content of the file block contains the entry number of the next block.  A special marker is then used to indicate the end of that particular  file.
+ A virtualization workstation can mean a workstation that has at least one operating system or  a workstation that uses hardware and software virtualization techniques to provide an end user with a controlled workstation environment. Each of these situations requires different hardware and software. A virtualization workstation is considered to be the first example. The second example is what is also known as a thin client a virtualization workstation would have the following components: Maximum CPU cores,Maximum RAM Multiple, fast, large-capacity hard drives, Possible SSDs,  Possible network-attached storage (NAS) for increased storage space that can be shared with other devices.
 
-One of  the  advantages of the linked list  approach is that the files can grow  dynamically with incremental allocation of blocks.  However, sequential accesses may suffer since blocks might not be contiguous. Random accesses are horrible and  can  involve multiple sequential
-Searches which will suck time and energy better spent elsewhere.  Lastly, linked list allocation can be unreliable, since missing a single pointer can lead to loss of the remaining file. 
+A thin client workstation is a desktop or laptop that has a display, mouse, keyboard, and network connectivity and runs applications from a server. Thin client computers are usually  less expensive than a normal workstation. Storage tends to be cloud-based or on remote storage media. But both the hardware and software environment could be virtualized in order to provide a controlled environment. Many corporations use thin clients. Characteristics to look for in a thin client computer include the following: Meets minimum requirements for selected operating system,1Gb/s preferred network connectivity,Basic applications Optional display privacy screen.
 
-Segment Based Allocation
-Segment based allocation uses a segment table to allocate to  multiple regions of contiguous blocks. Segment based allocation provides the flexibility required to  separate into a number of contiguous disk  regions,  while  also  permitting  contiguous  allocation  to  reduce  disk  seek
-time.    However,  as  the  disk  becomes  increasingly  fragmented,   it will need a bigger and bigger table to locate piecewise contiguous blocks.    In an extreme  case,  segment based  allocation  can  potentially  need  one  table  entry per disk block.  In addition
-, under this scheme, random accesses are not as fast as the contiguous allocation. Because   the file system needs to locate the pair of  begin  and  end blocks that contain the target byte before making the disk accesses.
+Thick Client Workstations in contrast is the most common type of desktop or laptop in the work environment. Applications are installed and documents are commonly stored on the local hard drives. An all-in one computer could be a thick client computer. Computers in small businesses tend to be thick client workstations. A standard thick client computer has the following characteristics: Meets recommended hardware requirements for selected operating system,Meets recommended hardware and software requirements for running desktop applications ,Optional display privacy screen, Optional dual displays.
 
+Home Theater PCs are computers located near to and part of a home theater. As such, an HTPC has output video more suited for a TV than a computer display. HTPCs typically have a programmable remote control for control of  the home theater components. HTPC components include the following: Compact form factor case and motherboard with quiet case and power supply fans,Surround-sound audio ports,HDMI video output,TV tuner card or cable card to receive pay channels Audio/video hard drive that is quiet Media player to stream entertainment, watch videos, and view photos, or listen to music,Possible wireless connectivity Digital video recorder (DVR) to record TV shows, transfer data from a camcorder or camera, or store movies or media for playback Large display with multiple HDMI, USB, component, composite, and so on audio/video ports and possible wireless connectivity, May have a Linux-based operating system Optional gaming device.
 
-Indexed Allocation
-Indexed  allocation allows the use of  an index to track the file block locations.  A  user  declares the maximum file size, and the file system allocates a file header with an array of pointers big enough to point to all file blocks.
 
+Home Servers  computer is used to store data, function as a web server, print server, or file server, control media streaming, be accessible from outside the home, control devices, and manage backups of other computers. (That explains the excessive amount of serves and racks we have in the basement.) The home server in the top-right corner physically connects to the wireless router. Typical components found in a home server include the following: Multiple hard drives in a RAID array configuration,1Gb/s (1000Mb/s) NIC Medium to large case Multiple processors or multiple cores in the processor, Lots of RAM Server applications including media streaming, file sharing, and print sharing Possible NAS ,Possible KVM switch.
 
-Although indexed allocation provides fast disk location lookups for random accesses  the file
+An Industrial Computers is one used for a specific industry. For example, in a car repair shop, the standard computers used both inside the showroom and in the service and repair center might be in an enclosure or have keyboard coverings. A kiosk in a mall or school might contain or be controlled by a computer. A kiosk is commonly used to show maps, provide directions, locate personnel, or provide information. Here are some things components required r for an industrial computer: Meets recommended hardware requirements based on applications installed Optional enclosure for wet, dry, or outdoor environments, Optional enclosure for a laptop’s external keyboard and mouse for unsecure or outdoor environments, Optional LCD enclosure for harsh, outdoor, public, high-traffic, or industrial environments,Optional privacy display screen, Case with air filters that may be removable for cleaning.
 
-blocks  might  be  scattered  all  over  the  disk making it potentially difficult to find.    A  file  system  needs  to  provide  additional mechanisms to ensure that disk blocks are grouped together for good and speedy performance.  Also,  as  the  file  increases  in  size, its system  needs  to reallocate the index array and copy old entries. So the index can ideally grow incrementally.
+A mobile computer for someone who travels as part of  their job also needs special design considerations. Considerations for an “on-the-road” computer design include the following: Laptop, ultrabook, or tablet Sufficient RAM Might need mobile broadband connectivity,Possible SSD,Compatible smartphone, Possible projector, Possible thermal printer for sales-oriented tasks, Possible portable speakers and noise cancellation headphones to prevent excess noise and conversation. 
 
+The motherboard, chipset, and CPU are all related to one another and should be  designed in conjunction with one another. Using a motherboard that has a Intel Haswell chipset, for example, gives you up to 6 USB 3.0 ports, a built-in GPU, or a PCIe v3.0 video card expansion slot. You might consider the AMD 990FX chipset to get support for four graphics cards, but you won’t get a PCIe v3.0 slot barring any unforeseen technological advances. Some technicians choose a motherboard based on a specific chipset. Because there might be issues with a specific chipset, but the user might still need high-end video or USB version 3.0 ports. There might be only one chipset that gives you two PCIe v3.0 slots for bridging video cards or a high number of USB 3.0 ports. In any case, this is something to consider. You also have to remember that things change all the time. Newer technologies such as Skylake, Broadwell, USB 3.1, Thunderbolt, and DDR4 may influence decision making. 
 
-Multilevel Indexed Allocation:
-Linux uses multilevel indexed allocation, so certain index entries point to the index blocks as opposed  to  data  blocks.    The  file  header,  or  the i node data  structure   holds  around 15  index pointers. The  first 12  pointers  point  to the  data  blocks.  The 13th pointer  points  to  one single indirect block , which contains 1,024 additional pointers pointing to data blocks.  The 14th pointer in  the  file  header  points  to  a double  indirect  block,  which  contains  1,024  pointers  to a bunch of single indirect blocks.  The 15th pointer points to a triple indirect block, which contains 1,024 pointers to the double indirect blocks.  
 
+Choosing a processor involves selecting Intel or AMD, determining the amount you want, and selecting a specific model. Throughout the years, both manufacturers tend to have had a low-end model for cheaper, less powerful computers, a mid range processor that gives pretty good bang for the buck, and very powerful processors. If you select one of the high-end CPUs, you must have appropriate cooling for it. When comparing processors, you may also want to consider the nanotechnology used. Processor technology length is measured in nanometers. 1 nanometer is 0.000000001 in length. Processors and chipsets created using the 14-nm or 22-nm technology can have more transistors in the same amount of space as the processors/chipsets created using the 32-nm  or 45- nm technology. Usually the smaller the technology, the lower the heat produced. With lower heat, some components can be made to go faster, but this not does not always happen.
 
- This skewed multilevel index tree is tailored  for both small and large files.  Small files can be accessed through the first 12 pointers, while large files can grow with incremental allocations of  the index blocks.  However accessing the  data block under the triple indirect block involves multiple disk accesses: one disk access for the triple indirect block. 
- Another for the  double indirect block, and yet another for the single indirect block before accessing the actual data block. 
 
- Also, the number of pointers provided by this data structures limited  the largest file size.  Lastly, the boundaries between the last four pointers are somewhat arbitrary.  With the given block number, it is not immediately obvious as to which of the 15 pointers to follow.
+Memory ties into processor technology because the type of motherboard and chipset you have will dictate the type of memory supported, the maximum amount of memory the motherboard manufacturer might consider putting on the motherboard and the maximum memory speed that can be used. Whenever a technician is upgrading or replacing a motherboard, compatibility with existing components is a requirement.
 
+ The most important design consideration for memory is to take advantage of the  dual-, triple-, and quad-channeling when possible. Ensure that the DIMMs and SO-DIMMS are purchased together and installed according to the recommendations in the motherboard/computer manual.  Encourage the end user to buy as much RAM as he or she can initially afford. This area is one of the most influential considerations on the user computing experience. upgrade this subsystem component as much as possible. When dealing with the motherboard, consider the following: Motherboard form, factor Chipset ,Whether the CPU is included or needs to be purchased separately, CPU size Motherboard socket size Nanotechnology used with the processor and/or chipset, CPU cooling, RAM Number and type of input/output (I/O) ports Traditional BIOS or UEFI.
 
 
+The storage subsystem consists of magnetic or flash technologies for internal or external hard drives, flash storage (including SSDs), or optical drives. When adding, replacing, or building a storage subsystem, the customer’s needs must be taken into account. These needs include how long the customer plans on storing the data, and how long the customer thinks the storage subsystem will be in use before being upgraded or replaced.
 
-Inverted Allocation
 
-If  we  use  a  disk  as  a  device  for  backups   the  storage  capacity  will  be  the primary concern, and the speed of the disk may not matter but it must be faster than the tape. 
-Since backup storage keeps track of all modifications, a small modification to a large file
-results  in the storage of  the  entire modified  file. Inverted  allocation allocates  the disk  block  by hashing the file block content to the disk block location.  By doing so the different file blocks 
-of the same content  can  share the same disk block for storage purposes.  For
-example, if one block is modified in the  N block file, then the storage requirement for both files
-is N + 1 blocks. 
 
 
 
 
+When a computer does not work properly, technicians must exhibit one essential trait the willpower to succeed. The main objective is to return the computer or peripheral to service as quickly and economically as possible. When the computer is down, a business will  lose revenue and productivity.  Therefore, a technician must have a good attitude and a large amount of perseverance and  drive to resolve the problem at hand quickly, efficiently, and in a professional, helpful manner.
 
-Disk Structure:
+Technicians must also use all available resources to achieve their goals.   Resources can be documentation for a particular peripheral, motherboard, or the  computer, the Internet,another technician, corporate documentation, textbooks,experience with similar problems, training materials,  previous service history on a particular customer/computer, or an online database provided by a company or partner. Technicians can and will be stubborn, but they must always remember that time is money, and solving a problem quickly and  with the least amount of downtime to the customer is a critical component of a computer support job. 
 
-Disks  provide  the  bulk  of  secondary  storage.  They
-come  in  multi platter  disk  packs  and have all the following characteristics:
+Evaluating and solving a technology problem is a high-level objective in Bloom’s Taxonomy. Teaching someone to troubleshoot is challenging. Not every problem can be described in a step-by-step fashion. Troubleshooting is easier if a technician uses reasoning and takes the following steps to solve the problem:  Identify the problem,Establish a theory of probable cause (question the obvious),  Test the theory to determine the cause,  Establish a plan of action to resolve the problem and implement the solution,Verify full system functionality and, if applicable, implement preventive measures, Document findings, actions, and outcomes.
 
-•
-Each platter is divided into several  different tracks.
 
-•
-Each track has several different sectors.
-.
+1.Three most important aspects I would focus on is Memory/RAM storage capacity, its mobility to allow the person to use it both at work and at home and finally I would focus selecting the processor to allow for reduce the time needed to execute tasks. 
 
-•
-Each platter has two different surfaces.
-.
-A Cylinder is  the  set  of  tracks which  are  at  the  same  track  position  on  all  disk
-
-surfaces.
-
-•
-The  number  of  sector, bytes, tracks,platter and track  vary  among  disk types.
-
-•
-To  access  a  sector,  one  must  know  the  following components drive number,  track/cylinder,  surface  and
-
-sector.
-
-•
-A sector is the smallest data section that can be read and written on a block device.
-
-
-
-Free sequence list
-
-Usually free disk blocks are in contiguous chunks. Thus we need only keep a 
-pointer to the  first  free  block  of  each  sequence  and  record  the  number  of  blocks  in  the  sequence.
-
-This  can  be  used  for  any  allocation  method  (but  is  particularly  efficient  for  contiguous
-
-allocation), and it is easily stored. However, it does lead to disk fragmentation.
-
-
-DISK SPACE ALLOCATION METHODS
-
-
-Contiguous Allocation
-
-Each file is allocated to contiguous disk blocks. For each file, the device directory contains
-
-the location of the  starting block and the number of blocks within the file.
-
-
-Access  is pretty easy.  Sequential  and  direct  access  is  possible. This  allocation method  also reduces  head  movement  during  file  access with most of the  blocks on  the  same cylinder.
-
-
-Finding  space  for  a  new  file can be awkward and stressful.  The  free  space  list  must  be  searched  for  a  big enough chunk of contiguous space to find space for the file.
-When a   disk  is  made  up  of  allocated  and  free  sequences  of  blocks the  sequences  are  called holes.
-
-
-First Fit means the  Allocation of the  first hole that fits the file.
-
-Best Fit means the Allocation of the smallest hole that fits the file.
-
-Worst fit means the Allocation of the biggest hole available.
-
- The  dynamic  allocation  problem  is  that  of  finding  the  most suitable hole for a file of size n blocks.  In this situation the 3 best algorithms are First fit,Best Fit and Worst fit. Which are prone  to external fragmentation. The Two possible solutions are  either compaction or abandon contiguous allocation.
-
-Contiguous allocation has other problems and constraints. The size of the file must be known. But it usually isn’t known until the problem presents itself. Thus as the file grows it may have to be moved  around the disk in order to  find  a file big enough  space for its new size.
-
-Trying to anticipate  growth  by  over allocating  space  will lead  to  internal  fragmentation as the  extra space may never be used.
-
-
-Chained (Linked) Allocation:
-
-
-The  above  problems  are  due  to  the  need  to  allocate  contiguous  space.
-Linked  allocation is designed to avoids  those  problems.  This  is achieved by allowing disk  space  to  be allocated randomly. A file’s space will be a linked list of blocks. Pointers are maintained to in the  first and last blocks.  Each  block  points  to  their successor.  So that each file and the device directory can contain the location of its starting blocks.
-
-
-Access is quite problematic. Only sequential access is possible. The way to access a random block, the  access  must  begin  at  the  start  and  follow all the pointers.  Finding  space  for  files  is  usually pretty easy.  Blocks  are  usually chosen  from  the  free  space  list  and linked to the previous blocks. But there is no external fragmentation.
-
-
-Another  minor  problem  is  that the  space is used  up  by pointers. Or more accurately the  pointers scattered all over the disk which increases the possibility of losing a part of a file due to a corrupt pointer.  One partial  solution to this is to use  doubly  linked lists.  Another solution involves storing the file name  and relative  block  node in  each  block.  But this requires extra space overhead.
-
-
-Indexed Allocation: 
-Linked allocation can solve the external fragmentation and file growth problems of contiguous allocation. However, it also introduces some problems of its own. For example no direct access and scattered block pointers. But Indexed allocation does address both of these problems without the problems of contiguous allocation which is a plus. 
-
-All  of  a  file’s  block  pointers  are  gathered  together  into  its index  block  which is an  array  of  pointers to blocks that are stored on the disk. The ith entry is supposed be  the pointer to the file’s ith block. 
-
-Access  is  pretty  easy.  Both  sequential  and  direct  access  possible.  There is no  external  fragmentation with the Allocation being relatively easy to manage. The Files also allocaticates extra blocks from the free space list as they grow in size.
-Disk Scheduling:
-
-For a single disk there will be multiple I/O requests. If requests are selected randomly, the user will get the worst possible performance. As a consequence several algorithms exist to schedule the servicing of disk I/O requests.
-First Come First Serve (FCFS) is when the  I/O requests are served in the order in which they reach.
-Shortest Seek Time First  (SSTF) is  the process of selecting the request  with the minimum  seek time from the current head position.
-SCAN  Scheduling is when the disk  arm  starts  at  one  end  of  the  disk,  and  moves  toward  the other  end initiating servicing  requests  until  it  gets  to  the  other  end of the disk where  the  head movement is reversed and servicing continues.
-Circular Scan  (C Scan) is when the  head  moves from one  end  of  the  disk  to  the  other servicing  requests  as  it  goes. But  when  it  reaches  the  other  end it immediately returns to the beginning of the disk, without servicing any requests on the return trip.
-Circular Look  (C- Look) Arm only goes  as  far as  the last  request  in each direction before reversing the direction immediately, without first going all the way to the end of the disk.
-
-
-Chapter notes please th
-
-Parallel ATA also known as Parallel Advanced Technology Attachment is the standard for connecting hard drives to computer systems. PATA is based on computer signal technology which is a method of conveying multiple binary bits simultaneously. 
-
-Serial Advanced Technology  Attachment is a command and transport protocol that defines how data is transferred between the motherboard and hard drive. One of these hard drive drive types called a solid state drive is when the hard drive uses flash memory instead of the classic mechanical disk. SSD is also much faster and has higher storage capacity than its counterpart.  Another variation of SSD called  SSHD (Solid State Hybrid drive) uses a particular type of flash memory called NAND to hold  important data on a hard disk drive device.   RAID is a way of storing the same data in different places on multiple SSD or hard disk drives to protect the data from potential drives failures. 
-
-
-Explanation as to why the notes from the textbook are extremely limited/ crappy only pertains to information supposed to be provided by the o'riley textbook:
-
-I currently am having issues with accessing different pages of the learning oreilly learning textbook. It is currently only letting me access one page and even though I selected another page it refuses to go to that particular page or any page minus the first one at all.  Further the only page I have access provides barely anything more than a couple of cliff notes. So I had to google most of the information to at least having something written in vain attempt to provide a good supplement and not just cheap out and do anything at all for the textbook notes. I would have if the technical issue never happened.  Sorry for any confusion or inconvenience and please take this into consideration when grading the assignment.  I am also currently writing this after a time in which the IT department on Monday september 26th is closed so I am unable to get help on this particular issue. In case you don’t believe me, The google docs file that I sumbittted along with the link contains an image of the issue to illustrate the problem I'm currently experiencing. 
-
- 
- 
-[mrees66/tech-journal-MRees](https://www.github.com)
-![Screenshot (98)](https://user-images.githubusercontent.com/112408713/192362912-6e829112-2730-4f44-8455-e027124fdd25.png)
+2. The last issue I had to deal with was when I froze and refused to move. In response to this I tried step 2 which essentially was google to problem and select the solution that is the most applicable. Then I tried to implement  the solution which was use the arrow keys to get to the setting’s cursor and icon and then turn whatever systems has been accidentally  turned off sometimes its the touchpad or the cursor icon.  Then I usually call it because I’m still trying to figure out why it keeps happening and what can I do to prevent it. 
